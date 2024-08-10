@@ -12,6 +12,33 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.ant-menu-item {
+  color: #444 !important;
+}
+.ant-menu-item-selected {
+  color: #ff3811 !important;
+  &:hover::after {
+    border-bottom-color: #ff3811 !important;
+  }
+  &::after {
+    border-bottom-color: #ff3811 !important;
+  }
+}
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item:hover::after {
+  border-bottom-color: #ff3811 !important;
+}
+.ant-menu-title-content {
+  font-family: Inter;
+}
+.ant-btn-dashed {
+  font-family: Inter;
+  border-color: #ff3811;
+  color: #ff3811;
+  &:hover {
+    border: 1px solid #ff3811 !important;
+    color: #444 !important;
+  }
+}
 
 a {
   font-weight: 500;

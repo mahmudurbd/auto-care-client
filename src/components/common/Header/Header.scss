@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+
+  .appointment-btn {
+    margin-left: 16px;
+  }
+
+  .header-left {
+    .logo {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 44px;
+        margin-right: 8px;
+      }
+    }
+  }
+  .header-middle {
+    .desktop-menu {
+      // display: flex;
+      // align-items: center;
+      // justify-content: space-between;
+    }
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    .icon-area {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .mobile-menu-area {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .header {
+    .header-middle {
+      .desktop-menu {
+        display: none;
+      }
+    }
+
+    .header-right {
+      .mobile-menu-area {
+        .mobile-menu-btn {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

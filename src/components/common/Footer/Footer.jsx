@@ -13,7 +13,13 @@ const Footer = () => {
   return (
     <div className="footer-area">
       <Row justify="space-around" gutter={32}>
-        <Col xs={24} sm={12} md={12} lg={8} style={{ marginBottom: "20px" }}>
+        <Col
+          xs={24}
+          sm={{ span: 12, offset: 0 }}
+          md={{ span: 12, offset: 0 }}
+          lg={{ span: 12, offset: 0 }}
+          style={{ marginBottom: "20px" }}
+        >
           <div
             style={{
               marginBottom: "10px",
@@ -25,7 +31,7 @@ const Footer = () => {
             <img src={Logo} alt="Auto Care" style={{ width: "300px" }} />
           </div>
           <div>
-            <p>
+            <p style={{ width: "60%" }}>
               Edwin Diaz is a software and web technologies engineer, a life
               coach trainer who is also a serial.
             </p>
@@ -41,22 +47,35 @@ const Footer = () => {
             <LinkedinOutlined style={{ fontSize: "24px" }} />
           </div>
         </Col>
-        <Col xs={24} sm={3} md={3} lg={3} style={{ marginBottom: "20px" }}>
+        <Col
+          xs={24}
+          sm={{ span: 6, offset: 6 }}
+          md={{ span: 6, offset: 6 }}
+          lg={{ span: 3, offset: 1 }}
+          style={{ marginBottom: "20px" }}
+        >
           <h3 style={{ color: "white" }}>About</h3>
           <p>Home</p>
           <p>Service</p>
           <p>Contact</p>
         </Col>
-        <Col xs={24} sm={12} md={12} lg={3} style={{ marginBottom: "20px" }}>
+        <Col
+          xs={24}
+          sm={{ span: 12, offset: 0 }}
+          md={{ span: 12, offset: 0 }}
+          lg={{ span: 3, offset: 1 }}
+          style={{ marginBottom: "20px" }}
+        >
           <h3 style={{ color: "white" }}>Company</h3>
           <p>Why Car Doctor</p>
           <p>About</p>
         </Col>
         <Col
           xs={24}
-          sm={3}
-          md={3}
-          lg={3}
+          sm={{ span: 6, offset: 6 }}
+          md={{ span: 6, offset: 6 }}
+          // lg={4}
+          lg={{ span: 3, offset: 1 }}
           style={{
             marginBottom: "20px",
           }}
