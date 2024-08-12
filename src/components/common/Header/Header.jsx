@@ -3,12 +3,24 @@ import { Menu, Button, Drawer, Input } from "antd";
 import { MenuOutlined, ShoppingOutlined } from "@ant-design/icons";
 import "./Header.scss";
 import LogoBlack from "../../../assets/auto-care-black.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 
 const Header = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
+  const location = useLocation();
+
+  const pathToKeyMap = {
+    "/": "1",
+    "/about": "2",
+    "/users": "3",
+    "/blog": "4",
+    "/contact": "5",
+  };
+
+  const currentKey = pathToKeyMap[location.pathname];
+  const [selectedKey, setSelectedKey] = useState(currentKey);
 
   const showDrawer = () => {
     setDrawerVisible(true);
@@ -52,12 +64,30 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("Location changed:", location.pathname);
+    const pathToKeyMap = {
+      "/": "1",
+      "/about": "2",
+      "/users": "3",
+      "/blog": "4",
+      "/contact": "5",
+    };
+
+    const currentKey = pathToKeyMap[location.pathname] || "1";
+    console.log("Setting selectedKey to:", currentKey);
+    setSelectedKey(currentKey);
+  }, [location.pathname]);
+
+  console.log("selectedKey", selectedKey);
+  console.log("path", currentKey);
+
   return (
     <div className="header">
       <div className="header-left">
         <Link to="/">
           <div className="logo">
-            <img src={LogoBlack} alt="Auto Care Logo" />
+            <img src={LogoBlack} alt="Auto Care Logo" width="300" />
           </div>
         </Link>
       </div>
@@ -67,7 +97,8 @@ const Header = () => {
             <Menu
               style={{ width: "400px", border: "none" }}
               mode="horizontal"
-              defaultSelectedKeys={["1"]}
+              defaultSelectedKeys={[selectedKey]}
+              onClick={(e) => setSelectedKey(e.key)}
               items={menuItems}
             />
           </div>
@@ -94,14 +125,26 @@ const Header = () => {
               onClick={showDrawer}
             />
             <Drawer
-              title="Auto Care"
+              title={
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={LogoBlack}
+                    alt="Auto Care Logo"
+                    style={{
+                      width: "200px",
+                      marginRight: "8px",
+                    }}
+                  />
+                </div>
+              }
               placement="right"
               onClose={onClose}
               open={drawerVisible}
             >
               <Menu
                 mode="vertical"
-                defaultSelectedKeys={["1"]}
+                defaultSelectedKeys={[currentKey]}
+                onClick={(e) => setSelectedKey(e.key)}
                 items={menuItems}
               />
               <Input

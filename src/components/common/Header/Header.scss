@@ -14,18 +14,12 @@
       align-items: center;
 
       img {
-        height: 44px;
+        width: 300px;
         margin-right: 8px;
       }
     }
   }
-  .header-middle {
-    .desktop-menu {
-      // display: flex;
-      // align-items: center;
-      // justify-content: space-between;
-    }
-  }
+
   .header-right {
     display: flex;
     align-items: center;
@@ -55,6 +49,15 @@
         .mobile-menu-btn {
           display: inline-block;
         }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 576px) {
+  .header {
+    .header-left {
+      img {
+        width: 100% !important;
       }
     }
   }

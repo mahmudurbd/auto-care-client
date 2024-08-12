@@ -7,4 +7,20 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px !important;
   }
+  .footer-img-wrapper {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: -5px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .footer-area {
+    .footer-img-wrapper {
+      img {
+        width: 100%;
+      }
+    }
+  }
 }

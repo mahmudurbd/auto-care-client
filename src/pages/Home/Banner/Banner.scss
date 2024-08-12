@@ -1,0 +1,121 @@
+.banner-area {
+  padding: 20px 60px;
+  font-family: Inter !important;
+
+  .carousel-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    position: relative;
+
+    .carousel-image {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: fill;
+      border-radius: 10px;
+    }
+    .gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(
+        90deg,
+        #151515a8 0%,
+        rgba(21, 21, 21, 0) 100%
+      );
+      z-index: 1;
+    }
+    .carousel-text {
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      color: white;
+      font-family: Inter !important;
+      padding: 10px 20px;
+      border-radius: 5px;
+      width: 25%;
+      z-index: 2;
+      .banner-btn-wrapper {
+        font-family: Inter !important;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        .project-btn {
+          border: 1px dashed #fff;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .banner-area {
+    .carousel-slide {
+      .carousel-text {
+        width: 45%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .banner-area {
+    .carousel-slide {
+      .carousel-text {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .banner-area {
+    .carousel-slide {
+      .carousel-image {
+        max-height: 300px;
+      }
+      .carousel-text {
+        //display: none;
+        top: 15%;
+        left: 15%;
+        width: 70%;
+        margin: 0 auto;
+        h1 {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 576px) {
+  .banner-area {
+    .carousel-slide {
+      .carousel-text {
+        top: 4%;
+        left: 5%;
+        width: 90%;
+        margin: 0 auto;
+        h1 {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  .banner-area {
+    .carousel-slide {
+      .carousel-text {
+        display: none;
+      }
+    }
+  }
+}

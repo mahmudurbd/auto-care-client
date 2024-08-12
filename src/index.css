@@ -39,6 +39,34 @@
     color: #444 !important;
   }
 }
+.custom-btn {
+  font-family: Inter;
+  font-size: 16px;
+  padding: 18px 15px;
+  border: 1px dashed #ff3811;
+  background-color: transparent;
+  color: #ff3811;
+  border-radius: 2px;
+  &:hover {
+    background-color: #ff3811 !important;
+    color: #fff !important;
+    border: 1px solid #ff3811 !important;
+  }
+}
+.custom-btn-deep {
+  font-family: Inter;
+  font-size: 16px;
+  padding: 19px 15px;
+  background-color: #ff3811 !important;
+  color: #fff !important;
+  border-radius: 2px;
+  border: 1px solid #ff3811;
+  &:hover {
+    border: 1px dashed #ff3811 !important;
+    background-color: transparent !important;
+    color: #ff3811 !important;
+  }
+}
 
 a {
   font-weight: 500;

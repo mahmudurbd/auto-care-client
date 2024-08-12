@@ -21,6 +21,7 @@ const Footer = () => {
           style={{ marginBottom: "20px" }}
         >
           <div
+            className="footer-img-wrapper"
             style={{
               marginBottom: "10px",
               fontSize: "18px",
@@ -28,7 +29,7 @@ const Footer = () => {
               marginLeft: "-5px",
             }}
           >
-            <img src={Logo} alt="Auto Care" style={{ width: "300px" }} />
+            <img src={Logo} alt="Auto Care" width="300" />
           </div>
           <div>
             <p style={{ width: "60%" }}>
