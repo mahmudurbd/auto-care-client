@@ -112,7 +112,7 @@ const Header = () => {
           </div>
         </div>
         {!isMobile && (
-          <Button type="dashed" className="appointment-btn">
+          <Button type="dashed" className="appointment-btn custom-btn">
             Appointment
           </Button>
         )}
@@ -151,7 +151,11 @@ const Header = () => {
                 style={{ marginBottom: "8px" }}
                 placeholder="Search here..."
               />
-              <Button type="primary" block className="appointment-btn">
+              <Button
+                type="primary"
+                block
+                className="appointment-btn custom-btn-deep"
+              >
                 Appointment
               </Button>
             </Drawer>

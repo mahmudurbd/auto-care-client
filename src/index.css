@@ -46,7 +46,7 @@
   border: 1px dashed #ff3811;
   background-color: transparent;
   color: #ff3811;
-  border-radius: 2px;
+  border-radius: 5px;
   &:hover {
     background-color: #ff3811 !important;
     color: #fff !important;
@@ -59,7 +59,7 @@
   padding: 19px 15px;
   background-color: #ff3811 !important;
   color: #fff !important;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #ff3811;
   &:hover {
     border: 1px dashed #ff3811 !important;
