@@ -86,8 +86,42 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 45px;
   line-height: 1.1;
+}
+h2 {
+  font-size: 20px;
+  line-height: 1.1;
+}
+p {
+  font-size: 16px;
+  color: #737373;
+}
+
+.custom-text-center-content {
+  text-align: center;
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #ff3811;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 45px;
+    color: #151515;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    text-transform: capitalize;
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 
 button {

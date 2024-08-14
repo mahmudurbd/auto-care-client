@@ -1,0 +1,45 @@
+.service-card-area {
+  border: 1px solid #e8e8e8;
+  max-width: 280px;
+  height: auto;
+  border-radius: 5px;
+  padding: 25px;
+  transition: background-color ease-in-out 0.3s;
+
+  &:hover {
+    background-color: #ff391107;
+  }
+
+  .service-card-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    .service-img {
+      transition: transform ease 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .service-card-bottom {
+    margin-top: 10px;
+    color: #ff3811;
+    display: flex;
+    justify-content: space-between;
+
+    .custom-arrow-icon {
+      cursor: pointer;
+      transition: transform ease-in-out 0.3s;
+      &:hover {
+        transform: rotate(20deg);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .service-card-area {
+    max-width: 400px;
+  }
+}
