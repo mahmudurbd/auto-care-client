@@ -1,6 +1,7 @@
 .service-card-area {
   border: 1px solid #e8e8e8;
   max-width: 280px;
+  // min-width: 200px;
   height: auto;
   border-radius: 5px;
   padding: 25px;
@@ -35,11 +36,5 @@
         transform: rotate(20deg);
       }
     }
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .service-card-area {
-    max-width: 400px;
   }
 }
