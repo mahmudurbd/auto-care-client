@@ -9,14 +9,15 @@ import Searchbar from "../Searchbar/Searchbar";
 const Header = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
+  const [searchbarHide, setSearchbarHide] = useState(window.innerWidth <= 768);
   const location = useLocation();
 
   const pathToKeyMap = {
     "/": "1",
     "/about": "2",
     "/users": "3",
-    "/blog": "4",
-    "/contact": "5",
+    "/contact": "4",
+    "/login": "5",
   };
 
   const currentKey = pathToKeyMap[location.pathname];
@@ -45,11 +46,11 @@ const Header = () => {
     },
     {
       key: "4",
-      label: <Link to="/login">Blog</Link>,
+      label: <Link to="/contact">Contact</Link>,
     },
     {
       key: "5",
-      label: <Link to="/login">Contact</Link>,
+      label: <Link to="/login">Login</Link>,
     },
   ];
 
@@ -65,13 +66,23 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    const handleSearchbarHide = () => {
+      setSearchbarHide(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleSearchbarHide);
+    return () => {
+      window.removeEventListener("resize", handleSearchbarHide);
+    };
+  }, []);
+
+  useEffect(() => {
     console.log("Location changed:", location.pathname);
     const pathToKeyMap = {
       "/": "1",
       "/about": "2",
       "/users": "3",
-      "/blog": "4",
-      "/contact": "5",
+      "/contact": "4",
+      "/login": "5",
     };
 
     const currentKey = pathToKeyMap[location.pathname] || "1";
@@ -147,11 +158,15 @@ const Header = () => {
                 onClick={(e) => setSelectedKey(e.key)}
                 items={menuItems}
               />
-              <Input
-                style={{ marginBottom: "8px" }}
-                placeholder="Search here..."
-              />
+              {searchbarHide && (
+                <Input
+                  size="large"
+                  style={{ marginBottom: "8px", marginTop: "5px" }}
+                  placeholder="Search here..."
+                />
+              )}
               <Button
+                style={{ marginTop: "5px" }}
                 type="primary"
                 block
                 className="appointment-btn custom-btn-deep"

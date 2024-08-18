@@ -1,5 +1,5 @@
 import React from "react";
-import "./Login.scss";
+import "./Signup.scss";
 import { LoginImg } from "../../components/common/SvgImg/SvgImg";
 import { Button, Col, Form, Input, Row } from "antd";
 import FacebookImg from "../../assets/social/facebook.png";
@@ -7,23 +7,52 @@ import LinkedInImg from "../../assets/social/linkedin.png";
 import GoogleImg from "../../assets/social/google.png";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  // Login Hanndler
-  const handleLogin = (values) => {
+const Signup = () => {
+  // Signup Hanndler
+  const handleSignup = (values) => {
     console.log(values);
   };
+
   return (
-    <div className="login-area">
-      <div className="login-left">
-        <div className="login-left-container">
+    <div className="signup-area">
+      <div className="signup-left">
+        <div className="signup-left-container">
           <LoginImg />
         </div>
       </div>
-      <div className="login-right">
-        <h2>Login</h2>
-        <div className="login-form">
-          <Form onFinish={handleLogin} layout="vertical" requiredMark={false}>
+      <div className="signup-right">
+        <h2>Sign Up</h2>
+        <div className="signup-form">
+          <Form onFinish={handleSignup} layout="vertical" requiredMark={false}>
             <Row>
+              <Col span={24}>
+                <Form.Item
+                  label={
+                    <span
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "15px",
+                        color: "#444",
+                      }}
+                    >
+                      Name
+                    </span>
+                  }
+                  name="name"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your name!",
+                    },
+                    {
+                      min: 2,
+                      message: "Name must be at least 2 characters long!",
+                    },
+                  ]}
+                >
+                  <Input size="large" placeholder="Your name" />
+                </Form.Item>
+              </Col>
               <Col span={24}>
                 <Form.Item
                   label={
@@ -92,8 +121,8 @@ const Login = () => {
             </Row>
           </Form>
         </div>
-        <p style={{ textAlign: "center" }}>Or sign in with</p>
-        <div className="login-with-social">
+        <p style={{ textAlign: "center" }}>Or sign up with</p>
+        <div className="signup-with-social">
           <div className="facebook">
             <img src={FacebookImg} alt="" width="22" />
           </div>
@@ -105,9 +134,9 @@ const Login = () => {
           </div>
         </div>
         <p style={{ textAlign: "center", marginTop: "25px" }}>
-          New to login?{" "}
-          <Link to="/signup">
-            <span style={{ color: "red", fontWeight: "600" }}>Sign up</span>
+          Already have an account?{" "}
+          <Link to="/login">
+            <span style={{ color: "red", fontWeight: "600" }}>Login</span>
           </Link>
         </p>
       </div>
@@ -115,4 +144,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
