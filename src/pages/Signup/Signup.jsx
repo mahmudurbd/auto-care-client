@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Signup.scss";
 import { LoginImg } from "../../components/common/SvgImg/SvgImg";
 import { Button, Col, Form, Input, Row } from "antd";
@@ -6,11 +6,23 @@ import FacebookImg from "../../assets/social/facebook.png";
 import LinkedInImg from "../../assets/social/linkedin.png";
 import GoogleImg from "../../assets/social/google.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Signup = () => {
+  const { createUser } = useContext(AuthContext);
+
   // Signup Hanndler
   const handleSignup = (values) => {
     console.log(values);
+    const { name, email, password } = values;
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
