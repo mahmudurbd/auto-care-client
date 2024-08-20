@@ -2,9 +2,10 @@ import React from "react";
 import "./ServiceCard.scss";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Image } from "antd";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ serviceItem }) => {
-  const { title, price, image_url } = serviceItem;
+  const { title, price, image_url, _id } = serviceItem;
   return (
     <div className="service-card-area">
       <div className="service-card-top">
@@ -17,7 +18,9 @@ const ServiceCard = ({ serviceItem }) => {
         <span style={{ fontSize: "15px", fontWeight: 600 }}>
           Price: ${price}
         </span>
-        <ArrowRightOutlined className="custom-arrow-icon" />
+        <Link style={{ color: "#ff3811" }} to={`/service-details/${_id}`}>
+          <ArrowRightOutlined className="custom-arrow-icon" />
+        </Link>
       </div>
     </div>
   );

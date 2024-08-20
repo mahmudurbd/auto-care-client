@@ -17,6 +17,7 @@
     margin-bottom: 10px;
     .service-img {
       transition: transform ease 0.3s;
+      border-radius: 5px;
       &:hover {
         transform: scale(1.1);
       }

@@ -77,15 +77,17 @@ const Header = () => {
 
   useEffect(() => {
     console.log("Location changed:", location.pathname);
-    const pathToKeyMap = {
-      "/": "1",
-      "/about": "2",
-      "/users": "3",
-      "/contact": "4",
-      "/login": "5",
-    };
+    // const pathToKeyMap = {
+    //   "/": "1",
+    //   "/about": "2",
+    //   "/users": "3",
+    //   "/contact": "4",
+    //   "/login": "5",
+    // };
 
-    const currentKey = pathToKeyMap[location.pathname] || "1";
+    const currentKey = location.pathname
+      ? pathToKeyMap[location.pathname]
+      : "1";
     console.log("Setting selectedKey to:", currentKey);
     setSelectedKey(currentKey);
   }, [location.pathname]);
@@ -108,7 +110,7 @@ const Header = () => {
             <Menu
               style={{ width: "400px", border: "none" }}
               mode="horizontal"
-              defaultSelectedKeys={[selectedKey]}
+              selectedKeys={[selectedKey]}
               onClick={(e) => setSelectedKey(e.key)}
               items={menuItems}
             />
@@ -154,7 +156,7 @@ const Header = () => {
             >
               <Menu
                 mode="vertical"
-                defaultSelectedKeys={[currentKey]}
+                selectedKeys={[selectedKey]}
                 onClick={(e) => setSelectedKey(e.key)}
                 items={menuItems}
               />
