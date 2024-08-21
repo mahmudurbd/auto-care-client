@@ -9,7 +9,11 @@ const Root = () => {
     <div>
       <Header />
       <Outlet />
-      {location.pathname !== "/login" && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" ? (
+        <Footer />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
