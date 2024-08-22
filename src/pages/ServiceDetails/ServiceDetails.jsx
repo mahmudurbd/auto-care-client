@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import "./ServiceDetails.scss";
 import BillBoard from "../../components/common/BillBoard/BillBoard";
 import { Button, Image } from "antd";
@@ -9,7 +9,17 @@ const ServiceDetails = () => {
   const [serviceDetailsData, setServiceDetailsData] = useState({});
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   console.log(location.pathname);
+
+  const items = [
+    {
+      title: <Link to="/">Home</Link>,
+    },
+    {
+      title: "Service Details",
+    },
+  ];
 
   useEffect(() => {
     fetch(`http://localhost:5000/services/${id}`)
@@ -17,11 +27,16 @@ const ServiceDetails = () => {
       .then((data) => setServiceDetailsData(data));
   }, []);
 
+  // Handle Navigate
+  const handleNavigate = () => {
+    navigate("/checkout");
+  };
+
   console.log(serviceDetailsData);
   const { description, image_url, price, title } = serviceDetailsData;
   return (
     <div className="service-details">
-      <BillBoard title="Service Details" />
+      <BillBoard title="Service Details" items={items} />
       <div className="service-details-bottom">
         <div className="service-bottom-left">
           <div className="img-wrapper">
@@ -70,7 +85,7 @@ const ServiceDetails = () => {
           </div>
           <div className="checkout-btn-area">
             <h2>Price ${price?.toFixed(2)}</h2>
-            <Button block className="custom-btn-deep">
+            <Button onClick={handleNavigate} block className="custom-btn-deep">
               Proceed Checkout
             </Button>
           </div>

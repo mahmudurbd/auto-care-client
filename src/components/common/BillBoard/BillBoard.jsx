@@ -4,24 +4,15 @@ import BannerImg from "../../../assets/banner-2.jpg";
 import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 
-const BillBoard = ({ title }) => {
+const BillBoard = ({ title, items }) => {
+  console.log(items);
   return (
     <div className="billboard">
       <div className="billboard-img">
         <h2 className="billboard-text">{title}</h2>
         <img src={BannerImg} alt="" />
         <span className="billboard-background-overlay"></span>
-        <Breadcrumb
-          className="custom-breadcumb"
-          items={[
-            {
-              title: <Link to="/">Home</Link>,
-            },
-            {
-              title: "Service Details",
-            },
-          ]}
-        />
+        <Breadcrumb className="custom-breadcumb" items={items} />
       </div>
     </div>
   );
