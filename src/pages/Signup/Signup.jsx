@@ -7,6 +7,7 @@ import LinkedInImg from "../../assets/social/linkedin.png";
 import GoogleImg from "../../assets/social/google.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
@@ -19,6 +20,8 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // update displayName
+        return updateProfile(user, { displayName: name });
       })
       .catch((error) => {
         console.log(error.message);

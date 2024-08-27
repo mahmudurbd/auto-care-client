@@ -27,13 +27,14 @@ const ServiceDetails = () => {
       .then((data) => setServiceDetailsData(data));
   }, []);
 
-  // Handle Navigate
-  const handleNavigate = () => {
-    navigate("/checkout");
-  };
-
   console.log(serviceDetailsData);
   const { description, image_url, price, title } = serviceDetailsData;
+
+  // Handle Navigate
+  const handleNavigate = () => {
+    navigate("/checkout", { state: { serviceDetailsData } });
+  };
+
   return (
     <div className="service-details">
       <BillBoard title="Service Details" items={items} />

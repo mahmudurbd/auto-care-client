@@ -2,14 +2,30 @@
   padding: 20px 60px;
   .checkout-form-area {
     margin-top: 85px;
+    margin-bottom: 85px;
     border-radius: 10px;
     background-color: #f3f3f3;
     padding: 100px;
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .checkout-area {
+    .checkout-form-area {
+      padding: 80px;
+    }
+  }
+}
 @media only screen and (max-width: 576px) {
   .checkout-area {
     width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .checkout-area {
+    width: 100%;
+    .checkout-form-area {
+      padding: 50px;
+    }
   }
 }

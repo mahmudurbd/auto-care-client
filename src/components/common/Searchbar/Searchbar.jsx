@@ -9,8 +9,9 @@ const Searchbar = () => {
 
   // Search Toggler
   const toggleSearch = () => {
-    setExpanded(!expanded);
+    setExpanded((prev) => !prev);
   };
+  console.log(expanded);
 
   // Searchbar Hiding Handler
   const handleClickOutside = (event) => {
@@ -31,22 +32,26 @@ const Searchbar = () => {
   }, [expanded]);
 
   return (
-    <div
-      ref={searchBarRef}
-      className={`search-bar ${expanded ? "expand" : ""}`}
-    >
-      <Input
-        className="search-input"
-        placeholder="Search here..."
-        style={{ width: expanded ? 200 : 0, opacity: expanded ? 1 : 0 }}
-      />
+    <>
       <Button
-        onClick={toggleSearch}
+        onClick={() => toggleSearch()}
         className="search-btn"
         type="text"
         icon={<SearchOutlined />}
       />
-    </div>
+      {expanded && (
+        <>
+          <div className="overlay" onClick={toggleSearch}></div>
+          <div ref={searchBarRef} className="search-bar">
+            <Input
+              className="search-input"
+              placeholder="Search here..."
+              autoFocus
+            />
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

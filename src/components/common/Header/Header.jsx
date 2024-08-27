@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Menu, Button, Drawer, Input } from "antd";
 import { MenuOutlined, ShoppingOutlined } from "@ant-design/icons";
 import "./Header.scss";
 import LogoBlack from "../../../assets/auto-care-black.png";
 import { Link, useLocation } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
+import { AuthContext } from "../../../providers/AuthProvider";
+import ProfileMenuBar from "../ProfileMenuBar/ProfileMenuBar";
 
 const Header = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
   const [searchbarHide, setSearchbarHide] = useState(window.innerWidth <= 768);
   const location = useLocation();
+  const { user, logOutUser } = useContext(AuthContext);
 
   const pathToKeyMap = {
     "/": "1",
     "/about": "2",
     "/users": "3",
-    "/contact": "4",
+    "/bookings": "4",
     "/login": "5",
   };
 
@@ -46,13 +49,13 @@ const Header = () => {
     },
     {
       key: "4",
-      label: <Link to="/contact">Contact</Link>,
+      label: user?.email ? <Link to="/bookings">My Booking</Link> : null,
     },
     {
       key: "5",
-      label: <Link to="/login">Login</Link>,
+      label: !user?.email ? <Link to="/login">Login</Link> : null,
     },
-  ];
+  ].filter((item) => item.label);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,13 +80,6 @@ const Header = () => {
 
   useEffect(() => {
     console.log("Location changed:", location.pathname);
-    // const pathToKeyMap = {
-    //   "/": "1",
-    //   "/about": "2",
-    //   "/users": "3",
-    //   "/contact": "4",
-    //   "/login": "5",
-    // };
 
     const currentKey = location.pathname
       ? pathToKeyMap[location.pathname]
@@ -94,6 +90,15 @@ const Header = () => {
 
   console.log("selectedKey", selectedKey);
   console.log("path", currentKey);
+
+  // Logout Handler
+  const handleLogout = () => {
+    logOutUser()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="header">
@@ -129,6 +134,7 @@ const Header = () => {
             Appointment
           </Button>
         )}
+
         {isMobile && (
           <div className="mobile-menu-area">
             <Button
@@ -160,6 +166,11 @@ const Header = () => {
                 onClick={(e) => setSelectedKey(e.key)}
                 items={menuItems}
               />
+              {user?.email && (
+                <Button onClick={handleLogout} className="custom-btn">
+                  Logout
+                </Button>
+              )}
               {searchbarHide && (
                 <Input
                   size="large"
@@ -178,6 +189,8 @@ const Header = () => {
             </Drawer>
           </div>
         )}
+
+        {user?.email && <ProfileMenuBar />}
       </div>
     </div>
   );
