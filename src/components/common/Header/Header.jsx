@@ -79,26 +79,11 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Location changed:", location.pathname);
-
     const currentKey = location.pathname
       ? pathToKeyMap[location.pathname]
       : "1";
-    console.log("Setting selectedKey to:", currentKey);
     setSelectedKey(currentKey);
   }, [location.pathname]);
-
-  console.log("selectedKey", selectedKey);
-  console.log("path", currentKey);
-
-  // Logout Handler
-  const handleLogout = () => {
-    logOutUser()
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <div className="header">
@@ -166,11 +151,6 @@ const Header = () => {
                 onClick={(e) => setSelectedKey(e.key)}
                 items={menuItems}
               />
-              {user?.email && (
-                <Button onClick={handleLogout} className="custom-btn">
-                  Logout
-                </Button>
-              )}
               {searchbarHide && (
                 <Input
                   size="large"

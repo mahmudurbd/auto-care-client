@@ -10,7 +10,6 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
 
   const items = [
     {
@@ -27,7 +26,6 @@ const ServiceDetails = () => {
       .then((data) => setServiceDetailsData(data));
   }, []);
 
-  console.log(serviceDetailsData);
   const { description, image_url, price, title } = serviceDetailsData;
 
   // Handle Navigate

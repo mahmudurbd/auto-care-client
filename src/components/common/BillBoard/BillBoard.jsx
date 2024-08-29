@@ -5,7 +5,6 @@ import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 
 const BillBoard = ({ title, items }) => {
-  console.log(items);
   return (
     <div className="billboard">
       <div className="billboard-img">

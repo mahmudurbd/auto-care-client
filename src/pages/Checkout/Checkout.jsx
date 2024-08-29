@@ -1,19 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import "./Checkout.scss";
 import BillBoard from "../../components/common/BillBoard/BillBoard";
-import { Link, useLocation } from "react-router-dom";
-import { Button, Col, Form, Input, Row, message } from "antd";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button, Col, Form, Input, Row, Select, message } from "antd";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "antd/es/form/Form";
 
+const { Option } = Select;
+
 const Checkout = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
   const { TextArea } = Input;
   const location = useLocation();
   const [form] = useForm();
   const { serviceDetailsData } = location.state || {};
-  console.log(serviceDetailsData);
+  console.log("service-details: ", serviceDetailsData);
   const [messageApi, contextHolder] = message.useMessage();
   const items = [
     {
@@ -27,14 +29,25 @@ const Checkout = () => {
   useEffect(() => {
     if (user?.email) {
       form.setFieldsValue({
+        name: user?.displayName,
         email: user?.email,
+        price: serviceDetailsData?.price,
+        service_name: serviceDetailsData?.title,
       });
     }
-  }, [user]);
+  }, [user, serviceDetailsData]);
 
   const handleCheckoutForm = (values) => {
-    console.log(values);
-    const { name, date, PhoneNumber, email, price, service_name } = values;
+    const {
+      name,
+      date,
+      PhoneNumber,
+      email,
+      price,
+      service_name,
+      warranty,
+      service_level,
+    } = values;
     const booking = {
       name,
       date,
@@ -43,8 +56,10 @@ const Checkout = () => {
       price,
       service_name,
       image_url: serviceDetailsData?.image_url,
+      warranty,
+      service_level,
     };
-    console.log("bookings", booking);
+
     fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
@@ -61,7 +76,10 @@ const Checkout = () => {
               content: "Loading..",
               duration: 2.5,
             })
-            .then(() => message.success("Booked service successfully", 2.5))
+            .then(() => {
+              message.success("Booked service successfully", 2.5);
+              navigate("/bookings");
+            })
             .catch((err) => {
               message.error(`${err}`, 2.5);
             });
@@ -79,11 +97,10 @@ const Checkout = () => {
             onFinish={handleCheckoutForm}
             layout="vertical"
             requiredMark={false}
-            initialValues={{
-              email: user?.email,
-              price: serviceDetailsData?.price,
-              service_name: serviceDetailsData?.title,
-            }}
+            // initialValues={{
+            //   price: serviceDetailsData?.price,
+            //   service_name: serviceDetailsData?.title,
+            // }}
           >
             <Row gutter={32}>
               <Col xs={24} sm={24} md={12} xl={12} xxl={12}>
@@ -107,7 +124,7 @@ const Checkout = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="Your Name" size="large" />
+                  <Input readOnly placeholder="Your Name" size="large" />
                 </Form.Item>
               </Col>
               <Col xs={24} sm={24} md={12} xl={6} xxl={6}>
@@ -188,7 +205,67 @@ const Checkout = () => {
                 </Form.Item>
               </Col>
 
-              <Col xs={24} sm={24} md={12} xl={12} xxl={12}>
+              <Col xs={24} sm={24} md={12} xl={4} xxl={4}>
+                <Form.Item
+                  name="service_level"
+                  label={
+                    <span
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "15px",
+                        color: "#444",
+                      }}
+                    >
+                      Service Level
+                    </span>
+                  }
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select service level opition!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="Select Service Level" size="large">
+                    {serviceDetailsData?.service_level?.map((item) => (
+                      <Option key={item.id} value={item.name}>
+                        {item.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={24} md={12} xl={4} xxl={4}>
+                <Form.Item
+                  name="warranty"
+                  label={
+                    <span
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "15px",
+                        color: "#444",
+                      }}
+                    >
+                      Warranty
+                    </span>
+                  }
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select warranty option!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="Select Warranty" size="large">
+                    {serviceDetailsData?.warranty?.map((item) => (
+                      <Option key={item.id} value={item.name}>
+                        {item.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={24} md={12} xl={4} xxl={4}>
                 <Form.Item
                   name="PhoneNumber"
                   label={
@@ -244,11 +321,6 @@ const Checkout = () => {
                   ]}
                 >
                   <Input readOnly placeholder="Your Email" size="large" />
-                  {/* <input
-                  readOnly
-                  defaultValue={user?.email}
-                  placeholder="Your Email"
-                /> */}
                 </Form.Item>
               </Col>
               <Col xs={24} sm={24} md={24} xl={12} xxl={12}>
@@ -289,12 +361,6 @@ const Checkout = () => {
                       Message
                     </span>
                   }
-                  // rules={[
-                  //   {
-                  //     required: true,
-                  //     message: "Please input your username!",
-                  //   },
-                  // ]}
                 >
                   <TextArea size="large" rows={6} placeholder="Your Message" />
                 </Form.Item>

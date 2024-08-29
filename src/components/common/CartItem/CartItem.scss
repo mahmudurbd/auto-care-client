@@ -1,0 +1,35 @@
+.cart-item-area {
+  .cart-item-wrapper {
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    .img-content-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      .cart-img {
+        img {
+          border-radius: 5px;
+        }
+      }
+      .text-content {
+        width: 375px;
+      }
+    }
+    .price,
+    .status,
+    .date {
+      text-align: center;
+    }
+    .status {
+      .status-btn {
+        cursor: auto;
+        &:hover {
+          background-color: #ff3811 !important;
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}

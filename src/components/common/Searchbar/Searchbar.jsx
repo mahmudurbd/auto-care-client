@@ -11,7 +11,6 @@ const Searchbar = () => {
   const toggleSearch = () => {
     setExpanded((prev) => !prev);
   };
-  console.log(expanded);
 
   // Searchbar Hiding Handler
   const handleClickOutside = (event) => {

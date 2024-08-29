@@ -39,6 +39,19 @@
     color: #444 !important;
   }
 }
+
+/* ant design custom input field  */
+.ant-input-outlined:hover {
+  border-color: #ffb811;
+}
+.ant-input-outlined:focus {
+  border-color: #ffb811;
+}
+.ant-input-outlined:focus-within {
+  border-color: #ffb811;
+  box-shadow: 0 0 0 2px rgba(255, 193, 5, 0.1);
+}
+
 .custom-btn {
   font-family: Inter;
   font-size: 16px;

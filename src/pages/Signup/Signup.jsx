@@ -14,17 +14,16 @@ const Signup = () => {
 
   // Signup Hanndler
   const handleSignup = (values) => {
-    console.log(values);
     const { name, email, password } = values;
-    createUser(email, password)
+    createUser(email, password, name)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+
         // update displayName
-        return updateProfile(user, { displayName: name });
+        updateProfile(user, { displayName: name });
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
 
@@ -129,7 +128,7 @@ const Signup = () => {
                     type="primary"
                     htmlType="submit"
                   >
-                    Sign In
+                    Sign Up
                   </Button>
                 </Form.Item>
               </Col>
