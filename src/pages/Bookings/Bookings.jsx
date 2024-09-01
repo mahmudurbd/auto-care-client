@@ -4,7 +4,7 @@ import BillBoard from "../../components/common/BillBoard/BillBoard";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import CartItem from "../../components/common/CartItem/CartItem";
-import { Pagination, Skeleton } from "antd";
+import { Empty, Pagination, Skeleton } from "antd";
 
 const Bookings = () => {
   const [bookingList, setBookinglist] = useState([]);
@@ -37,6 +37,7 @@ const Bookings = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = bookingList.slice(indexOfFirstItem, indexOfLastItem);
+  console.log(currentItems);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
@@ -60,10 +61,17 @@ const Bookings = () => {
         <div className="order-list">
           {progress ? (
             <Skeleton active />
-          ) : (
+          ) : currentItems.length > 0 ? (
             currentItems?.map((bookingItem) => (
-              <CartItem key={bookingItem._id} bookingItem={bookingItem} />
+              <CartItem
+                key={bookingItem._id}
+                bookingItem={bookingItem}
+                bookingList={bookingList}
+                setBookinglist={setBookinglist}
+              />
             ))
+          ) : (
+            <Empty />
           )}
         </div>
         {bookingList.length > 0 && (

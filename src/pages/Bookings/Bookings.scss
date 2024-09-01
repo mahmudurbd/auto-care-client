@@ -4,7 +4,22 @@
     margin-top: 50px;
 
     .order-list {
-      margin-top: 30px;
+      margin: 30px 0;
+      // overflow-y: scroll;
+      // max-height: 200px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .bookings-area {
+    .order-list {
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      ::-webkit-scrollbar-thumb {
+        background-color: red; /* Color of the scrollbar thumb */
+        border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+      }
     }
   }
 }

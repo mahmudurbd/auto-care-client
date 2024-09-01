@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from "react";
 import "./Checkout.scss";
 import BillBoard from "../../components/common/BillBoard/BillBoard";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button, Col, Form, Input, Row, Select, message } from "antd";
+import { Button, Col, Form, Input, Row, Select } from "antd";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "antd/es/form/Form";
+import toast, { Toaster } from "react-hot-toast";
 
 const { Option } = Select;
 
@@ -16,7 +17,7 @@ const Checkout = () => {
   const [form] = useForm();
   const { serviceDetailsData } = location.state || {};
   console.log("service-details: ", serviceDetailsData);
-  const [messageApi, contextHolder] = message.useMessage();
+
   const items = [
     {
       title: <Link to="/">Home</Link>,
@@ -70,25 +71,17 @@ const Checkout = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          messageApi
-            .open({
-              type: "loading",
-              content: "Loading..",
-              duration: 2.5,
-            })
-            .then(() => {
-              message.success("Booked service successfully", 2.5);
-              navigate("/bookings");
-            })
-            .catch((err) => {
-              message.error(`${err}`, 2.5);
-            });
+          toast.success("Booked Sevice Item Successfully!");
+          navigate("/bookings");
         }
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
   };
   return (
     <>
-      {contextHolder}
+      <Toaster />
       <div className="checkout-area">
         <BillBoard title="Check Out" items={items} />
         <div className="checkout-form-area">

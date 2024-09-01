@@ -33,3 +33,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .cart-item-area {
+    .cart-item-wrapper {
+      .price,
+      .status,
+      .date {
+        min-width: 120px;
+      }
+    }
+  }
+}
