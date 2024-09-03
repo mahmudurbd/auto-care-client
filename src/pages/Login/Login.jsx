@@ -7,6 +7,7 @@ import LinkedInImg from "../../assets/social/linkedin.png";
 import GoogleImg from "../../assets/social/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { signinUser } = useContext(AuthContext);
@@ -20,8 +21,17 @@ const Login = () => {
     const { email, password } = values;
     signinUser(email, password)
       .then((result) => {
-        const user = result.user;
-        navigate("/");
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         //console.log(error.message);

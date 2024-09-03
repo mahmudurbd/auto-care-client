@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import CartItem from "../../components/common/CartItem/CartItem";
 import { Empty, Pagination, Skeleton } from "antd";
+import axios from "axios";
 
 const Bookings = () => {
   const [bookingList, setBookinglist] = useState([]);
@@ -23,11 +24,14 @@ const Bookings = () => {
   ];
 
   useEffect(() => {
-    setProgress(true);
-    fetch(`http://localhost:5000/bookings?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookinglist(data);
+    //setProgress(true);
+    axios
+      .get(`http://localhost:5000/bookings?email=${user?.email}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setBookinglist(res.data);
         setProgress(false);
       });
   }, [user]);
